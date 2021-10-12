@@ -28,8 +28,9 @@ module.exports = {
         if (type === 'plus'){
             houses[index].price += 10000
             res.status(200).send(houses)
-        } else if (houses[index].price < 10000 && type === 'minus'){
-            res.status(400).send('House price cannot be below $10,000')
+        } else if (houses[index].price <= 10000 && type === 'minus'){
+            houses[index].price = 0
+            res.status(200).send(houses)
         } else if (type === 'minus'){
             houses[index].price -= 10000
             res.status(200).send(houses)
